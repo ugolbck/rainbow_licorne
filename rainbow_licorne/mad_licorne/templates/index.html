@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+{% block body %}
+<form method="GET">
+    {{ latests_articles.form.title }}
+    <button type="submit">Search !</button>
+</form>
+
+<section class="main items">
+    {% for article in latests_articles.qs %}
+    <article class="item">
+        <header>
+            <a href="#"><img src="{{article.picture.url}}" alt="" /></a>
+            <h3>{{ article.title }}</h3>
+        </header>
+        <p>Fusce malesuada efficitur venenatis. Pellentesque tempor leo sed massa hendrerit hendrerit. In sed feugiat est, eu congue elit. Ut porta magna vel felis sodales vulputate. Donec faucibus dapibus lacus non ornare.</p>
+        <ul class="actions">
+            <li><a href="{% url 'mad_licorne:article' article.slug %}" class="button">More</a></li>
+        </ul>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+{% block title %}Mad Licorne - Article{% endblock %}
+{% block body %}
+
+	    <section id="main" class="main">
+            <header>
+                <h2>{{ article.title }}</h2>
+            </header>
+            <img src="{{ article.picture.url }}" alt="" id="headerpic">
+            <p>{{ article.containt }}</p>
+        </section>
+
+
+    <p>Laisser un commentaire : </p>
+    <form action="" method="POST" name="usrform">
+    	{% csrf_token %}
+    	{{ form }}
+    	<input type="submit" value="Valider">
+    </form>
+    <p></p>
+    <hr />
+    {% for comment in article.comments.all %}
+    <p>{{ comment.name }}</p>
+    <p>{{ comment.content }}</p>
+    <hr />
+    {% endfor %}
+
+    <a href="{% url 'mad_licorne:index' %}">Revenir à l'accueil...</a>
+
+{% endblock %}
